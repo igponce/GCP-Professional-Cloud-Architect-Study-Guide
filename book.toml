@@ -1,0 +1,6 @@
+[book]
+authors = ["Inigo"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Google Cloud Professional Cloud Architect - Study Guide"
