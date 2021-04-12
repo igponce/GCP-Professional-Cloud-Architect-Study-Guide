@@ -6,4 +6,15 @@ Altough Google does not endorse this services as their 'core' services, in fact 
 
 Note that other services will use the services described here. For instance, both Dataflow and Dataproc will use Compute Engine to launch instances. Even it is possible to log in via ssh or from console and look what's going on inside the machines that provide advanced services.
 
+## Core services list
+
+- Storage:
+   - Cloud Storage
+   - Cloud SQL
+- Compute:
+   - Compute Engine
+   - App Engine
+- VPC Networking
+- IAM 
+
 
