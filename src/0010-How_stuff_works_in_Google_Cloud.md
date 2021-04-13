@@ -8,3 +8,4 @@ Outline:
 - Billing structure: organizations, projects, and folders.
 - Undestanding IAM
 
+![](./organization_folder_project.png)
