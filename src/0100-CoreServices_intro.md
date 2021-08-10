@@ -9,7 +9,7 @@ Note that other services will use the services described here. For instance, bot
 ## Core services list
 
 - Storage:
-   - Cloud Storage
+   - [Cloud Storage](0110-CloudStorage.md)
    - Cloud SQL
 - Compute:
    - Compute Engine
