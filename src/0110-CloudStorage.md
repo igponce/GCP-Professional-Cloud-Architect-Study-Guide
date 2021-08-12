@@ -10,6 +10,16 @@ Block storage needs very low latency and high throughput between the compute nod
 
 Object storage needs just good communications with the rest of the infrastructure, but it latency and access time requirements are _relaxed_.
 
+# Terminology
+
+- (Bucket)[glossary.md#bucket]
+- Blob
+- Retention period
+- Storage Class
+- Notification
+
+
+
 ## Cloud Storage URLs
 
 When you store some files in cloud storage, the URI looks like this:
@@ -34,6 +44,23 @@ You can see that the URI looks like there is a filesystem behind. It is not.
 
 Under the hood Google maintains a "name" server that maps blob names to where the data it is actually stored.
 
+Data in **encrypted in transit** : all communications from Google to you are encrypted using TLS.
+
 The data will be always **encrypted at rest**, either with a google-managed key or a key that your provide yourself. 
 
-Google rotates encryption keys when the key is "old". This is transparent to you.
+Google rotates encryption keys periodically when the key is "old". This is transparent to you.
+
+## Data versioning
+
+## How to speed up a file upload?
+
+If you want to upload files faster to Google Cloud Storage you should use the `-m` switch when you run `gsutil cp`. This makes use of sereveral processes in parallel speeding up the file upload.
+
+```
+gsutil cp -m <files> gs://bucket/path/
+```
+
+When you have several different files to upload, a good idea is to use a random prefix like `gs://bucket/random_prefix/filename`.
+
+This makes you use different cloud storage ingestion servers (yes, there's a big balancer in front of it and one of the key factors that determine which storage server should get the request is the blob name).
+
