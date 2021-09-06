@@ -52,7 +52,8 @@ Google rotates encryption keys periodically when the key is "old". This is trans
 
 ## Data versioning
 
-## How to speed up a file upload?
+## Best Practices
+# How to speed up a file upload?
 
 If you want to upload files faster to Google Cloud Storage you should use the `-m` switch when you run `gsutil cp`. This makes use of sereveral processes in parallel speeding up the file upload.
 
@@ -64,3 +65,20 @@ When you have several different files to upload, a good idea is to use a random 
 
 This makes you use different cloud storage ingestion servers (yes, there's a big balancer in front of it and one of the key factors that determine which storage server should get the request is the blob name).
 
+## Use buckets not "directories"
+
+Content stored in Cloud Storage looks like it is part of a filesystem. It isn't.
+When you see a '/' (slash) character as part of a blob name, there is no directory or folder behind.
+This is just part of the blob name.
+
+When you want to know what's stored "behind" a given directory, by executing something like this:
+
+```
+gsutil ls gs://bucket/part_of/the/blob/**
+```
+
+The gsutil tool has to list under the hood *all* blob names in the bucket and apply a filter.
+This takes time and resources.
+
+If you need to use _a lot_ information stored under a "directory" in cloud storage consider using a separate bucket for this purpose.
+This will allow you to apply a storage class for that information, and will be able to copy or import data quickly using a transfer service instead of reading files from cloud storage, then writing files again to cloud storage.
