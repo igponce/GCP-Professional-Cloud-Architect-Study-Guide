@@ -45,13 +45,13 @@ gs://bucket_name/object/name
 
    You can remove a bucket, and create a new one with the same name on a different location or a different (usually cheaper) storage type. 
 
-You can see that the URI looks like there is a filesystem. It is not.
+You can see that the URI looks like there is a filesystem, but there isn't.
 
 Under the hood Google maintains a "name" server that maps blob names to where the data it is actually stored. You cannot see where this data is.
 
-Data in **encrypted in transit** : all communications from Google to you are encrypted using TLS.
+Data in **encrypted in transit**: all communications from Google to you are encrypted using TLS.
 
-The data will be always **encrypted at rest**, either with a google-managed key or a key that your provide yourself. 
+The data will always be **encrypted at rest**, either with a google-managed key or a key that your provide yourself. 
 
 If you tell Google to manage encryption for you, they will periodically rotate encryption keys. This makes easy for them to migrate data inside their datacenters and, in case of a disk failure, nobody can recover data from the disks.
 
