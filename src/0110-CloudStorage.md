@@ -116,8 +116,9 @@ If we want to retrieve or remove old versions of the objects, we must specify th
 version1
 ```
 
-## Best Practices
-# How to speed up a file upload?
+# Best Practices
+
+## How to speed up a file upload?
 
 If you want to upload files faster to Google Cloud Storage you should use the `-m` switch when you run `gsutil cp`. This makes use of several processes in parallel speeding up the file upload.
 
@@ -144,5 +145,20 @@ gsutil ls gs://bucket/part_of/the/blob/**
 The gsutil tool has to list under the hood *all* blob names in the bucket and apply a filter.
 This takes time and resources.
 
+## Remember you create blobs for free
+
+Rememer that creating buckets is free.
+Having lots of buckets in a project is also free.
+
+You only pay for content the you store inside the bucket.
+
 If you need to use _a lot_ information stored under a "directory" in cloud storage consider using a separate bucket for this purpose.
-This will allow you to apply a storage class for that information, and will be able to copy or import data quickly using a transfer service instead of reading files from cloud storage, then writing files again to cloud storage.
+
+
+In fact, if you have your data in different buckets, you might save a bit of money because you will be using *less* list operations looking for data (that should be covered by the free tier, btw).
+
+If you have your information in different buckets, you might be able to speed up your uploads just because the blob prefix might be different, and Google Cloud will be able to better parallelize the upload.
+
+Also, if you have data inside a bucket you can apply a storage class for all the information stored inside. You cannot do this with a "directory" or path inside a bucket.
+
+Another advantage is that you can  copy or import data quickly using a transfer service instead of reading files from cloud storage, then writing files again to cloud storage (or viversa).
