@@ -8,7 +8,6 @@ Outline:
 - Billing structure: organizations, projects, and folders.
 - Undestanding IAM
 
-
 # Global and Regional Services
 
 Before we start deep down in services, we need to know the difference between global, regional services.
@@ -59,3 +58,4 @@ Organizations are useful when you want to integrate your internet domain and/or 
 
 Think about organizations as the top of an LDAP hierarchy like ``O=Organization,OU=folder_name,OU=project``
 
+![](./organization_folder_project.png)
