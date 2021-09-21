@@ -116,6 +116,27 @@ If we want to retrieve or remove old versions of the objects, we must specify th
 version1
 ```
 
+# Storage classes
+
+Google Cloud Storage service has different storage classes for blobs stored in Cloud Storage buckets.
+Storage classes have different availability requirements. The lower, the availability need, the lower the pricing.
+
+| Storage class | Whay's good for |
+|<--------------|<----------------|
+| Standard | Data that you need to use right now |
+| Nearline | Data that you may need to one once a month or less |
+| Coldline | Data that you may need to one once every quearter or less | 
+| Archive  | Data that you rarely need to use (disaster recovery, cold storage, etc.) |
+
+Cloud storage *marks* the storage class as metadata.
+You can set a default storage class for a bucket. When you create a new blob, it will use that default storage class unless told otherwise.
+
+You can change the storage class for an object with `gsutil` like this:
+```
+gsutil rewrite -s STORAGE_CLASS gs://PATH_TO_OBJECT
+```
+In case you need to change the storage class for a lot of objects, or for the whole bucket, it is easier to use a lifecycle rule instead.
+
 # Best Practices
 
 ## How to speed up a file upload?
@@ -154,11 +175,18 @@ You only pay for content the you store inside the bucket.
 
 If you need to use _a lot_ information stored under a "directory" in cloud storage consider using a separate bucket for this purpose.
 
-
 In fact, if you have your data in different buckets, you might save a bit of money because you will be using *less* list operations looking for data (that should be covered by the free tier, btw).
 
 If you have your information in different buckets, you might be able to speed up your uploads just because the blob prefix might be different, and Google Cloud will be able to better parallelize the upload.
 
-Also, if you have data inside a bucket you can apply a storage class for all the information stored inside. You cannot do this with a "directory" or path inside a bucket.
+Also, if you have data inside a bucket you can apply a *default* storage class for all the information stored inside. You cannot do this with a "directory" or path inside a bucket.
 
 Another advantage is that you can  copy or import data quickly using a transfer service instead of reading files from cloud storage, then writing files again to cloud storage (or viversa).
+
+## Use lifecycle rules to lower your storage bills
+
+Bills go up quickly when you store a lot of files you don't need or use.
+
+A good way to remediate this is using lifecycle rules on a bucket.
+With lifecycle rules you can automatically change the storage class for the files (blobs) you habe in cloud storage.
+You can automatically remove them as well.
