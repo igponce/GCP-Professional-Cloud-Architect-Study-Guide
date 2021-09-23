@@ -1,0 +1,53 @@
+# Compute Engine
+
+Compute engine is the Google Cloud service that allows you to run your workloads inside a server.
+This, along with Cloud Storage, is the most basic service that a cloud computing operator can provide, and it is also one of the most important.
+You'll see later Google provides other services (like K8s, Dataproc, or Dataflow) on top of Compute Engine, that's why it is important to understand the Compute Engine service well.
+
+## Compute Instances
+
+When you want to run some software, you need some resources to run it: a CPU that can process instructions, some memory, disk, networking, etc.
+In Google Cloud that resource combination is provided by Compute Instances.
+
+Instances have some amount of RAM, CPU Cores, Disks (which are Block Storage, not Object Storage).
+Some instances may have specialized hardware like GPUs, and one or several network interfaces.
+
+### Hardware Configuration and billing
+
+In Google Cloud you are billed for the resources you use. Other cloud providers charge you for defining a virtual machine no matter if it is running or not.
+
+GCP takes into account the resources you use and bills you by the second for:
+
+- CPU
+- RAM (GiB)
+- Public IP addreses 
+- GPUs
+
+Other resources like bandwith are metered and billed by the amount you use.
+
+#### Discounts
+
+Google will try to pack your workloads into equivalent machines to offer you discounts.
+
+The discounts you can get are for:
+
+- Long-running loads.
+- Equivalent machines
+- Reserved Instances
+
+Ephemeral instances, and Excended RAM (that's RAM Above 6.5GB per core) does not have discounts.
+E2 Instances have a lower price than n1, n3 instances and does not have discounts either.
+There is no dicount for using GPUs (which are a scarce resource).
+
+### Free tier
+
+As usual, there is a free tier. This free usage tier is thought to be used to test, develop, and operate services without incurring costs.
+You can run a micro-t1 machine (0.25 score, 1GB ram) for 720h / month on shared hardware.
+This VM can be used as a "bastion host" to access internal instances you might have on yout GCP projects.
+You can set up a SSH or RDP server for that purpose.
+
+Glossary
+
+* Compute Instance
+
+A compute instance is like a virtual server running on the cloud. I can be running in hardware that runs 
