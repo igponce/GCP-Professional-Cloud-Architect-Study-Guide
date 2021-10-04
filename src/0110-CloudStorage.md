@@ -1,3 +1,21 @@
+---
+Title: Cloud Storage
+
+Outline:
+
+   - [X] Glossary
+   - [X] Command line usage
+   - [ ] Transcoding
+   - [ ] Security: IAM
+   - [ ] Security: Encryption
+   - [ ] Security: Signed URLs
+   - [X] Storage classes
+   - [ ] Retention
+   - (partial) Lifecycle Rules
+   - [ ] Storage notifications
+   - [X] Best practices
+
+----
 # Cloud Storage
 
 Cloud Storage is an *object* storage solution.
@@ -17,13 +35,12 @@ Object storage needs just good communications with the rest of the infrastructur
 
 Some cloud storage concepts you need to know:
 
-- Blob
 - (Bucket)[glossary.md#bucket]
+- Blob
 - Notification
 - Region
 - Retention period
 - Storage Class
-
 
 ## Cloud Storage URLs
 
